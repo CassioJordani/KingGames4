@@ -3,10 +3,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TesteController extends Controller
+class BibliotecaJogosController extends Controller
 {
     public function index()
     {
-        return view('user.teste');
+        return view('user.bibliotecaJogos');
     }
 }

@@ -13,7 +13,7 @@ class LoginController extends Controller
         if ($user->is_admin) {
             return redirect()->route('admin.dashboard');
         }else{
-            return redirect()->route('user.teste');
+            return redirect()->route('user.bibliotecaJogos');
         }
 
         return redirect()->route('home');

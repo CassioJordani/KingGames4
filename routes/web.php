@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CarrinhoController;
 
 Auth::routes();
 
@@ -34,5 +35,9 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/user/teste', [App\Http\Controllers\TesteController::class, 'index'])->name('user.teste');
+    Route::get('/user/bibliotecaJogos', [App\Http\Controllers\BibliotecaJogosController::class, 'index'])->name('user.bibliotecaJogos');
 });
+
+Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho');
+Route::post('/carrinho/adicionar/{id}', [CarrinhoController::class, 'adicionarAoCarrinho'])->name('carrinho.adicionar');
+Route::get('/carrinho/remover/{id}', [CarrinhoController::class, 'removerDoCarrinho'])->name('remover-do-carrinho');

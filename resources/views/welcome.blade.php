@@ -30,7 +30,10 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('user.teste') }}">Dashboard de Usuário</a>
+                                <a class="nav-link text-white" href="{{ route('user.bibliotecaJogos') }}">Biblioteca de jogos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ route('carrinho') }}">Carrinho</a>
                             </li>
                         @endif
                     @endauth
@@ -181,19 +184,20 @@
 
             <div class="row">
                 @foreach($jogos as $jogo)
-                    @if(request()->input('categoria_id') == '' || $jogo->categoria_id == request()->input('categoria_id'))
-                        <div class="col-md-3">
-                            <div class="card" style="width: 15rem;">
-                                <img src="{{ asset('img/' . $jogo->imagem) }}" class="card-img-top" alt="Imagem do jogo">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $jogo->nome }}</h5>
-                                    <p class="card-text-filtro">{{ $jogo->descricao }}</p>
-                                    <p class="card-text-filtro">Categoria: {{ $jogo->categoria->nome }}</p>
-                                    <p class="card-text-filtro">Preço: R$ {{ $jogo->preco }}</p>
-                                </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img src="{{ asset('img/' . $jogo->imagem) }}" class="card-img-top" alt="Imagem do jogo">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $jogo->nome }}</h5>
+                                <p class="card-text">{{ $jogo->descricao }}</p>
+                                <p class="card-text">Preço: R$ {{ $jogo->preco }}</p>
+                                <form action="{{ route('carrinho.adicionar', $jogo->id) }}" method="post">
+                                    @csrf
+                                    <button type="submit">Adicionar ao Carrinho</button>
+                                </form>
                             </div>
                         </div>
-                    @endif
+                    </div>
                 @endforeach
             </div>
         </div>

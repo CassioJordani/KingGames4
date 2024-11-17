@@ -27,9 +27,12 @@ class HomeController extends Controller
 public function index(Request $request)
 {
     $categorias = Categoria::all();
-    $jogos = Jogos::when($request->categoria_id, function ($query) use ($request) {
+    $jogos = Jogos::when($request->has('categoria_id'), function ($query) use ($request) {
         return $query->where('categoria_id', $request->categoria_id);
     })->get();
+
+    // Adicione um dd() aqui para verificar o que está sendo passado como ID
+    dd($request->categoria_id);
 
     return view('welcome', compact('categorias', 'jogos'));
 }
