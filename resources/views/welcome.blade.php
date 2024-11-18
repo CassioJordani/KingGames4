@@ -10,6 +10,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
 </head>
 <body>
     <header>
@@ -32,8 +33,11 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="{{ route('user.bibliotecaJogos') }}">Biblioteca de jogos</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('carrinho') }}">Carrinho</a>
+                            <li>
+                                <!-- Icone do carrinho -->
+                                <a href="/carrinho">
+                                    <img src="https://img.icons8.com/ios-glyphs/30/FFFFFF/shopping-cart.png" width="30" height="30">
+                                </a>
                             </li>
                         @endif
                     @endauth
@@ -163,8 +167,8 @@
                                     <div class="card">
                                         <img src="{{ asset('img/buckshot_roulette_imagem.png') }}" class="card-img-top" alt="Jogo 8">
                                         <div class="card-body">
-                                            <h5 class="card-title" style="color: #FFFFFF;">Buckshot Roulette</h5>
-                                            <p class="card-text" style="color: #FFFFFF;">Descrição do jogo 8.</p>
+                                            <h5 class="card-title" style="color: #B94949;">Buckshot Roulette</h5>
+                                            <p class="card-text" style="color: #555;">Descrição do jogo 8.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -189,11 +193,11 @@
                             <img src="{{ asset('img/' . $jogo->imagem) }}" class="card-img-top" alt="Imagem do jogo">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $jogo->nome }}</h5>
-                                <p class="card-text">{{ $jogo->descricao }}</p>
-                                <p class="card-text">Preço: R$ {{ $jogo->preco }}</p>
+                                <p class="card-text-filtro">{{ $jogo->descricao }}</p>
+                                <p class="card-text-filtro">Preço: R$ {{ $jogo->preco }}</p>
                                 <form action="{{ route('carrinho.adicionar', $jogo->id) }}" method="post">
                                     @csrf
-                                    <button type="submit">Adicionar ao Carrinho</button>
+                                    <button class="btn btn-primary" type="submit">Adicionar ao Carrinho</button>
                                 </form>
                             </div>
                         </div>
@@ -250,7 +254,7 @@
         }
 
         .card-text-filtro {
-            color: #FFFFFF;
+            color: #D6D6D6;
         }
         .col-md-3 {
             margin-right: 0px;
@@ -261,6 +265,18 @@
         }
         .carousel-item {
             transition: transform 1s ease, opacity 1s ease;
+        }
+
+        .btn {
+            background-color: #660000;
+            border-color: #660000;
+            color: #fff;
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+        .btn:hover {
+            background-color: #AA0000;
+            border-color: #AA0000;
+
         }
     </style>
 </body>

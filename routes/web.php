@@ -41,3 +41,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho');
 Route::post('/carrinho/adicionar/{id}', [CarrinhoController::class, 'adicionarAoCarrinho'])->name('carrinho.adicionar');
 Route::get('/carrinho/remover/{id}', [CarrinhoController::class, 'removerDoCarrinho'])->name('remover-do-carrinho');
+// loja-app/routes/web.php
+Route::get('/user/bibliotecaJogos', [App\Http\Controllers\BibliotecaJogosController::class, 'index'])->name('user.bibliotecaJogos');

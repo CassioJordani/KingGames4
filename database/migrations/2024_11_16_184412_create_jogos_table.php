@@ -103,7 +103,7 @@ return new class extends Migration
         ]);
 
         DB::table('jogos')->insert([
-            'nome' => 'Alan Wake',
+            'nome' => 'Alan Wake 2',
             'descricao' => 'Jogo de aventura',
             'imagem' => 'alan_wake_2.png',
             'preco' => 139.99,

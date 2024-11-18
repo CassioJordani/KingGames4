@@ -32,11 +32,14 @@ class CarrinhoController extends Controller
                     'quantidade' => 1,
                 ];
                 Carrinho::create($data);
+
             } else {
                 return redirect()->route('login');
             }
         }
         return redirect()->route('carrinho');
+
+        
     }
 
     public function removerDoCarrinho(Request $request, $id)
@@ -50,5 +53,11 @@ class CarrinhoController extends Controller
             $carrinho->delete();
         }
         return redirect()->route('carrinho');
+    }
+
+    public function finalizarCompra()   
+    {
+        $carrinho = Carrinho::where('usuario_id', auth()->id())->get();
+        return view('bibliotecaJogos', compact('carrinho'));
     }
 }

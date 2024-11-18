@@ -33,6 +33,11 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="{{ route('user.bibliotecaJogos') }}">Biblioteca de jogos</a>
                             </li>
+                            <li>
+                                <a href="/carrinho">
+                                    <img src="https://img.icons8.com/ios-glyphs/30/FFFFFF/shopping-cart.png" width="30" height="30">
+                                </a>
+                            </li>
                         @endif
                     @endauth
                 </ul>
@@ -82,6 +87,15 @@
 
                             <p>Olá, {{ Auth::user()->name }}!</p>
                             <p>Você está logado como usuário não administrador.</p>
+                            <h2>Produtos Comprados</h2>
+                                <tbody>
+                                @foreach ($carrinho as $item)
+                                    <div>
+                                        <h2>{{ $item->jogo->nome }}</h2>
+                                    </div>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -103,6 +117,13 @@
 
     </script>    
         <style>
+        h2{
+            color: #AA0000;
+            font-size: 20px;
+        }
+        .tabela{
+            color: #fff;
+        }
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #22243C;
